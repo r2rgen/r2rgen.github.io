@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="R2RGen: Real-to-Real 3D Data Generation for Spatially Generalized Manipulation">
+  <meta name="keywords" content="Data Generation, Imitation Learning, Visuomotor Policy, Robotic Manipulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    R2RGen
+  </title>
+
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <link rel="stylesheet" href="./static/source_serif_4.css">
+  <link rel="stylesheet" href="./static/source_sans_3.css">  
+  <link rel="stylesheet" href="./static/academicons.min.css">
+  <link rel="stylesheet" href="./static/fontawesome/css/fontawesome.css">
+  <link rel="stylesheet" href="./static/fontawesome/css/brands.css">
+  <link rel="stylesheet" href="./static/fontawesome/css/light.css">
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+</head>
+<!-- <body onload="updateInTheWild();updateBimanual();"> -->
+
+
+  
+<section class="hero">
+  <div class="hero-body" style="padding-top: 1.5%;">
+    <div class="container is-fullhd">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title" style="color:#6510ad; white-space: nowrap;">
+            <span>
+              R2RGen: Real-to-Real 3D Data Generation <br> for Spatially Generalized Manipulation
+            </span>
+          </h1>
+          <br>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              Anonymous Authors
+            </span>
+          </div>
+          <br>
+          <div class="button-container">
+            <a href="" target="_blank" class="button" style="background-color: #f2f2f2;border: transparent;"><i class="fa-light fa-code"></i>&emsp14;Code</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-widescreen">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered  is-centered">
+          <video id="teaser" controls height="100%" width="100%">
+            <source src="videos/teaser.mp4"
+                    type="video/mp4">
+          </video>
+          </br>
+        </div>
+        <br>
+        <h2 class="subtitle has-text-centered" style="margin-top: -0.8em;">
+        TLNR (TODO).
+        </h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="container is-max-widescreen">
+  
+
+
+
+
+<hr style="margin-top: 1em;">
+<div class="columns is-centered has-text-centered">
+  <div class="column is-four-fifths">
+    
+    <h2 class="title is-3" style="margin-bottom: 0.5em; color:#6510ad">Abstract</h2>
+    <img style="margin-bottom: 5px;" src="img/teaser.png" class="method-image" width="75%" /><br>
+    <div class="content has-text-justified">
+      <p>
+        Towards the aim of generalized robotic manipulation, spatial generalization is the most fundamental capability that requires the policy to work robustly under different spatial distribution of objects, environment and agent. To achieve this, substantial human demonstrations need to be collected to cover different spatial configurations for training a generalized visuomotor policy via imitation learning. Prior works explore a promising direction that leverages data generation to acquire abundant spatially diverse data from minimal source demonstrations; however, most approaches remain confined to fixed-base manipulation and suffer from sim-to-real gap. In this paper, we propose a real-to-real 3D data generation framework (R2RGen) that directly modifies the pointcloud observation-action pairs to generate real-world data. R2RGen is simulator- and rendering-free, thus being efficient and plug-and-play. It also supports mobile robots, raw sensor inputs and any number of objects and interaction modes. Given one source demonstration, we design an annotation system for fine-grained scene / trajectory parsing in 30s. A group-wise augmentation strategy is proposed to address complex object combinations and task specifications, followed by a camera-aware processing method to align the distribution of generated data to 3D sensor.
+      </p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<hr style="margin-top: 1em;">
+<div class="rows is-centered has-text-centered">
+  <h2 class="title is-3" style="margin-bottom: 0.5em; color:#6510ad"> Methods</h2>
+  </br>
+  <div class="columns is-vcentered  is-centered">
+    <img style="margin-bottom: 5px;" src="img/pre-process.png" class="method-image" width="35%" height="35" />
+    <img style="margin-bottom: 5px;" src="img/augment-pipeline.png" class="method-image" width="60%" height="60" /><br>
+  </div>
+  <p class="content has-text-justified">
+    <strong>Pre-processing.</strong> We design an annotation system with shape-aware source pre-processing. After processing, the 3D scene is parsed into complete objects, environment and robot’s arm. The trajectory is parsed into interleaved motion and skill segments. <br>
+    <strong>Pipeline of R2RGen.</strong> Given processed source demonstration, we backtrack skills and apply group-wise augmentation to maintain the spatial relationships among target objects, where a fixed object set is maintained to judge whether the augmentation is applicable. Then motion planning is performed to generate trajectories that connect adjacent skills. After augmentation, we perform camera-aware processing to make the pointclouds follow distribution of RGB-D camera. The solid arrows indicate the processing flow, while the dashed arrows indicate the updating of fixed object set.
+  </p>
+</div>
+
+
+<br>
+<hr style="margin-top: 1em;">
+<div class="rows is-centered has-text-centered">
+  <h2 class="title is-3" style="margin-bottom: 0.8em; color:#6510ad">Experiments</h2>
+    <h3 class="title is-4" style="margin-top: 1.8em; margin-bottom: 0.8em; color:#6510ad">Source & Generated Demonstrations</h3>
+    <div class="rows">
+
+
+      <!-- <p class="content has-text-centered">
+        <span style="letter-spacing: 0.07em;">V<span style="font-variant: small-caps; font-size: 1.2em;">i</span>L<span style="font-variant: small-caps; font-size: 1.2em;">a</span></span> effectively utilizes visual feedback in an intuitive and natural way, enabling robust closed-loop planning in dynamic environments.
+      </p> -->
+
+      <div class="columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            loop controlsList="nodownload"
+            width="99%">
+            <source src="videos/teaser.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            loop controlsList="nodownload"
+            width="99%">
+            <source src="videos/teaser.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            loop controlsList="nodownload"
+            width="99%">
+            <source src="videos/teaser.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+
+      </div>
+      <p class="content" style="margin-bottom: 1.5em; text-align: left;">
+        xxxx xxxx (TODO)
+      </p>
+
+    <h3 class="title is-4" style="margin-top: 1.8em; margin-bottom: 0.8em; color:#6510ad">Evaluation Videos</h3>
+    <div class="rows">
+
+
+      <!-- <p class="content has-text-centered">
+        <span style="letter-spacing: 0.07em;">V<span style="font-variant: small-caps; font-size: 1.2em;">i</span>L<span style="font-variant: small-caps; font-size: 1.2em;">a</span></span> effectively utilizes visual feedback in an intuitive and natural way, enabling robust closed-loop planning in dynamic environments.
+      </p> -->
+
+      <div class="columns">
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            loop controlsList="nodownload"
+            width="99%">
+            <source src="videos/teaser.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            loop controlsList="nodownload"
+            width="99%">
+            <source src="videos/teaser.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+
+        <div class="column has-text-centered">
+          <video id="dist1"
+            controls
+            muted
+            autoplay
+            loop controlsList="nodownload"
+            width="99%">
+            <source src="videos/teaser.mp4" 
+            type="video/mp4">
+          </video>
+        </div>
+      </div>
+
+      </div>
+      <p class="content" style="margin-bottom: 1.5em; text-align: left;">
+        xxxx xxxx (TODO)
+      </p>
+</div>
+ 
+<br>
+<hr style="margin-top: 1em;">
+<div class="rows is-centered has-text-centered">
+  <h2 class="title is-3" style="margin-bottom: 0.8em; color:#6510ad">Extension & Application</h2>
+  <h3 class="title is-4" style="margin-bottom: 0.5em; color:#6510ad">Extension: Appearance Generalization</h3>
+  <br>
+  <div class="columns is-vcentered  is-centered">
+    <video id="method-examples" autoplay muted loop  height="70%" width="70%" style="margin-left: 5px;">
+      <source src="videos/teaser.mp4" type="video/mp4">
+    </video>
+  </div>
+  <p class="content has-text-justified">
+    xxxx xxxx (TODO)
+  </p>
+  <h3 class="title is-4" style="margin-top: 1.8em; margin-bottom: 0.8em; color:#6510ad">Application: Mobile Manipulation</h3>
+  <br>
+  <div class="columns is-vcentered  is-centered">
+    <video id="method-examples" autoplay muted loop  height="70%" width="70%" style="margin-left: 5px;">
+      <source src="videos/teaser.mp4" type="video/mp4">
+    </video>
+  </div>
+  <p class="content has-text-justified">
+    xxxx xxxx (TODO)
+  </p>
+</div>
+
+<br>
+<br>
+
+
+</section>
+</div>
+
+
+<script>
+  document.getElementById('shuffle-video').addEventListener('click', function() {
+    var taskSelect = document.getElementById('task-selection');
+    var spatialSelect = document.getElementById('spatial-selection');
+    randomizeSelect(taskSelect);
+    randomizeSelect(spatialSelect);
+    console.log("Shuffle", taskSelect.value, spatialSelect.value)
+    SelectTestVideo();
+  });
+
+  function randomizeSelect(selectElement) {
+    var options = selectElement.options;
+    random_move = Math.random();
+    var randomIndex = Math.floor(Math.random() * options.length);
+    selectElement.selectedIndex = randomIndex;
+  }
+
+  function SelectTestVideo() {
+    var task_name = document.getElementById("task-selection").value;
+    var spatial_id = document.getElementById("spatial-selection").value;
+
+    console.log("SelectTestVideo", task_name, spatial_id)
+    var video = document.getElementById("test-video");
+    video.src = "media/videos/evaluations/" + task_name + "/" + spatial_id + ".mp4";
+    video.play();
+  }
+</script>
+
+<script>
+  document.getElementById('shuffle-obstacle').addEventListener('click', function() {
+    var objectSelect = document.getElementById('object-obstacle');
+    randomizeSelect(objectSelect);
+    console.log("Shuffle", objectSelect.value)
+    SelectObstacle();
+  });
+
+  function randomizeSelect(selectElement) {
+    var options = selectElement.options;
+    random_move = Math.random();
+    var randomIndex = Math.floor(Math.random() * options.length);
+    selectElement.selectedIndex = randomIndex;
+  }
+
+  function SelectObstacle() {
+    var object_obstacle = document.getElementById("object-obstacle").value;
+
+    console.log("SelectObstacle", object_obstacle)
+    var video = document.getElementById("test-obstacle");
+    video.src = "media/videos/obstacle/" + object_obstacle + ".mp4";
+    video.play();
+  }
+</script>
+
+
+<script>
+  document.getElementById('shuffle-disturb').addEventListener('click', function() {
+    var policySelect = document.getElementById('policy-disturb');
+    var directionSelect = document.getElementById('direction-disturb');
+    var numberSelect = document.getElementById('number-disturb');
+    randomizeSelect(policySelect);
+    randomizeSelect(directionSelect);
+    randomizeSelect(numberSelect);
+    console.log("Shuffle", policySelect.value, policySelect.value, numberSelect.value)
+    SelectDisturb();
+  });
+
+  function randomizeSelect(selectElement) {
+    var options = selectElement.options;
+    random_move = Math.random();
+    var randomIndex = Math.floor(Math.random() * options.length);
+    selectElement.selectedIndex = randomIndex;
+  }
+
+  function SelectDisturb() {
+    var policy = document.getElementById("policy-disturb").value;
+    var direction = document.getElementById("direction-disturb").value;
+    var number = document.getElementById("number-disturb").value;
+
+    console.log("SelectTestVideo", policy, direction, number)
+    var video = document.getElementById("test-disturb");
+    video.src = "media/videos/disturb_eval/" + policy + "/" + direction + "/" + number + ".mp4";
+    video.play();
+  }
+</script>
+
+<style>
+  .button.is-info.is-outlined:focus,
+  .button.is-info.is-outlined:active {
+    background-color: transparent;
+    border-color: #6510ad;
+    color: #6510ad;
+    box-shadow: none;
+  }
+
+  .button.is-info.is-outlined:hover {
+    background-color: #6510ad;
+    color: #fff;
+  }
+
+  .button.is-info.is-outlined:hover .icon ion-icon,
+  .button.is-info.is-outlined:hover span {
+    color: #fff;
+  }
+</style>
+
+</body>
+</html>
