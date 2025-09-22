@@ -88,7 +88,7 @@
         </div>
         <br>
         <h2 class="subtitle has-text-centered" style="margin-top: -0.8em;">
-        TLNR (TODO).
+        R2RGen generates <b>spatially diverse</b> manipulation demonstrations for training <b>real-world</b> policies, requiring only <b>one</b> human demonstration without simulator setup. <b>Results</b>: 1human demo + R2RGen > 25 human demos!
         </h2>
       </div>
     </div>
@@ -108,7 +108,7 @@
     <img style="margin-bottom: 5px;" src="img/teaser.png" class="method-image" width="75%" /><br>
     <div class="content has-text-justified">
       <p>
-        Towards the aim of generalized robotic manipulation, spatial generalization is the most fundamental capability that requires the policy to work robustly under different spatial distribution of objects, environment and agent. To achieve this, substantial human demonstrations need to be collected to cover different spatial configurations for training a generalized visuomotor policy via imitation learning. Prior works explore a promising direction that leverages data generation to acquire abundant spatially diverse data from minimal source demonstrations; however, most approaches remain confined to fixed-base manipulation and suffer from sim-to-real gap. In this paper, we propose a real-to-real 3D data generation framework (R2RGen) that directly modifies the pointcloud observation-action pairs to generate real-world data. R2RGen is simulator- and rendering-free, thus being efficient and plug-and-play. It also supports mobile robots, raw sensor inputs and any number of objects and interaction modes. Given one source demonstration, we design an annotation system for fine-grained scene / trajectory parsing in 30s. A group-wise augmentation strategy is proposed to address complex object combinations and task specifications, followed by a camera-aware processing method to align the distribution of generated data to 3D sensor.
+        Towards the aim of generalized robotic manipulation, spatial generalization is the most fundamental capability that requires the policy to work robustly under different spatial distribution of objects, environment and agent itself. To achieve this, substantial human demonstrations need to be collected to cover different spatial configurations for training a generalized visuomotor policy via imitation learning. Prior works explore a promising direction that leverages data generation to acquire abundant spatially diverse data from minimal source demonstrations. However, most approaches face significant sim-to-real gap and are often limited to constrained settings, such as fixed-base scenarios and predefined camera viewpoints. In this paper, we propose a real-to-real 3D data generation framework (R2RGen) that directly augments the pointcloud observation-action pairs to generate real-world data. R2RGen is simulator- and rendering-free, thus being efficient and plug-and-play. Specifically, given a single source demonstration, we introduce an annotation mechanism for fine-grained parsing of scene and trajectory. A group-wise augmentation strategy is proposed to handle complex multi-object compositions and diverse task constraints. We further present camera-aware processing to align the distribution of generated data with real-world 3D sensor. Empirically, R2RGen substantially enhances data efficiency on extensive experiments and demonstrates strong potential for scaling and application on mobile manipulation.
       </p>
     </div>
   </div>
@@ -120,11 +120,11 @@
 
 <hr style="margin-top: 1em;">
 <div class="rows is-centered has-text-centered">
-  <h2 class="title is-3" style="margin-bottom: 0.5em; color:#6510ad"> Methods</h2>
+  <h2 class="title is-3" style="margin-bottom: 0.5em; color:#6510ad">Methods</h2>
   </br>
   <div class="columns is-vcentered  is-centered">
     <img style="margin-bottom: 5px;" src="img/pre-process.png" class="method-image" width="35%" height="35" />
-    <img style="margin-bottom: 5px;" src="img/augment-pipeline.png" class="method-image" width="60%" height="60" /><br>
+    <img style="margin-bottom: 5px;" src="img/augment-pipeline.png" class="method-image" width="55%" height="55" /><br>
   </div>
   <p class="content has-text-justified">
     <strong>Pre-processing.</strong> We design an annotation system with shape-aware source pre-processing. After processing, the 3D scene is parsed into complete objects, environment and robot’s arm. The trajectory is parsed into interleaved motion and skill segments. <br>
@@ -148,7 +148,6 @@
       <div class="columns">
         <div class="column has-text-centered">
           <video id="dist1"
-            controls
             muted
             autoplay
             loop controlsList="nodownload"
@@ -160,7 +159,6 @@
 
         <div class="column has-text-centered">
           <video id="dist1"
-            controls
             muted
             autoplay
             loop controlsList="nodownload"
@@ -172,7 +170,6 @@
 
         <div class="column has-text-centered">
           <video id="dist1"
-            controls
             muted
             autoplay
             loop controlsList="nodownload"
@@ -186,7 +183,7 @@
 
       </div>
       <p class="content" style="margin-bottom: 1.5em; text-align: left;">
-        xxxx xxxx (TODO)
+        R2RGen generates spatially diverse 3D observation-action sequences given one human demonstration. It ensures the pointclouds of objects and environment are reasonably distributed under arbitrary augmentation.
       </p>
 
     <h3 class="title is-4" style="margin-top: 1.8em; margin-bottom: 0.8em; color:#6510ad">Evaluation Videos</h3>
@@ -200,7 +197,6 @@
       <div class="columns">
         <div class="column has-text-centered">
           <video id="dist1"
-            controls
             muted
             autoplay
             loop controlsList="nodownload"
@@ -212,7 +208,6 @@
 
         <div class="column has-text-centered">
           <video id="dist1"
-            controls
             muted
             autoplay
             loop controlsList="nodownload"
@@ -224,7 +219,6 @@
 
         <div class="column has-text-centered">
           <video id="dist1"
-            controls
             muted
             autoplay
             loop controlsList="nodownload"
@@ -237,7 +231,7 @@
 
       </div>
       <p class="content" style="margin-bottom: 1.5em; text-align: left;">
-        xxxx xxxx (TODO)
+        With R2RGen, it is possible to train 3D policy that can generalizes to varying objects' locations and rotations as well as robot's viewpoints. All we need is one human demonstration and real-world data augmentation, no simulator or rendering required.
       </p>
 </div>
  
@@ -248,23 +242,25 @@
   <h3 class="title is-4" style="margin-bottom: 0.5em; color:#6510ad">Extension: Appearance Generalization</h3>
   <br>
   <div class="columns is-vcentered  is-centered">
-    <video id="method-examples" autoplay muted loop  height="70%" width="70%" style="margin-left: 5px;">
+    <video id="method-examples" controls  height="70%" width="70%" style="margin-left: 5px;">
       <source src="videos/teaser.mp4" type="video/mp4">
     </video>
   </div>
   <p class="content has-text-justified">
-    xxxx xxxx (TODO)
+    Apart from spatial generalization, there are also other types of generalization ability in robotic manipulation tasks, which can be divided into appearance generalization (i.e., generalize to different in-category objects and environments) and task generalization. Among these, spatial generalization is the fundamental capability which serves as the preliminary of other kinds of generalization. Since this work mainly focuses on single-task visuomotor policy learning, we want to explore whether the spatial generalization achieved by R2RGen can further facilitate appearance generalization. As shown below, we design a more challenging Place-Bottle task, where the appearance of objects can be changed. We observe that the data demand is significantly increased in order to achieve both appearance and spatial generalization. Even by collecting xxx human demonstrations, the policy can still achieve xxx in terms of SR. On the contrary, with R2RGen, we only need to collect xxx human demonstrations for each bottle-base pair (totally xxx demos) to achieve a high SR of xxx.
   </p>
+  <img style="margin-bottom: 5px;" src="img/appearance.png" class="method-image" width="60%" />
   <h3 class="title is-4" style="margin-top: 1.8em; margin-bottom: 0.8em; color:#6510ad">Application: Mobile Manipulation</h3>
-  <br>
   <div class="columns is-vcentered  is-centered">
-    <video id="method-examples" autoplay muted loop  height="70%" width="70%" style="margin-left: 5px;">
+    <video id="method-examples" controls  height="70%" width="70%" style="margin-left: 5px;">
       <source src="videos/teaser.mp4" type="video/mp4">
     </video>
   </div>
   <p class="content has-text-justified">
-    xxxx xxxx (TODO)
+    R2RGen makes our 3D policy achieve strong spatial generalization across different viewpoints without camera calibration, so we can achieve mobile manipulation by simply combining a navigation system and a manipulation policy trained with R2RGen. Since the termination condition of navigation is relatively loose, the robot may stop at different docking point around the manipulation area, which imposes great challenges on the manipulation policy.
+	According to figure below, using iDP3 trained with R2RGen, the policy successfully generalizes to different docking points with maximum distance larger than 5cm. Different from DemoGen (DP3) which requires a careful calibration of the camera pose to crop environment pointclouds, our method directly applies on raw RGB-D observations during both data generation and policy training / inference stages, which is more practical in real-world applications.
   </p>
+  <img style="margin-bottom: 5px;" src="img/mobile-manipulation.png" class="method-image" width="60%" />
 </div>
 
 <br>
